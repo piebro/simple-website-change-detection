@@ -14,7 +14,7 @@ jobs:
         EXIT=0
         
         # check for new Frieren episodes
-        if curl -s "https://en.wikipedia.org/wiki/List_of_Frieren_episodes" | grep -q '<td class="infobox-data">28</td>'; then
+        if ! curl -s "https://en.wikipedia.org/wiki/List_of_Frieren_episodes" | grep -q '<td class="infobox-data">28</td>'; then
           echo "There are new Frieren episodes."
           EXIT=1
         fi
@@ -26,8 +26,9 @@ jobs:
           EXIT=1
         fi
 
-        if [ "test" != "asd" ]; then
-          echo "this is a test"
+        # Check for Alegro Pastel film info
+        if ! curl -s "https://de.wikipedia.org/wiki/Leif_Randt" | grep -q "Im Sommer 2024 wird der Roman verfilmt."; then
+          echo "New information about Alegro Pastel film found!"
           EXIT=1
         fi
 
