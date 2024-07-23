@@ -1,10 +1,17 @@
 # Simple Website Change Detection
 
-A simple GitHub action that runs weekly and checks if websites or part of websites changed.
-If that's the case, the GitHub action fails and I will be notified (there is a setting in the GitHub app to get notification if an action fails).
+This repository contains a simple GitHub Action that runs weekly to check if specified websites or parts of websites have changed. If changes are detected, the GitHub Action fails, triggering a notification (you can configure the GitHub app to send notifications for failed actions).
 
-If you want to use it for yourself, just fork the repo or copy the code and add your own websites and change conditions.
+The GitHub Action script is located at [.github/workflows/check_websites_weekly.yml](.github/workflows/check_websites_weekly.yml).
+
+## Usage
+
+To use this for your own purposes:
+
+1. Fork this repository or copy the code.
+2. Add your own websites and change conditions to the script.
+3. Configure GitHub notifications for failed actions if desired.
 
 ## License
 
-All code in this project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+All code in this project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
