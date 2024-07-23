@@ -1,0 +1,34 @@
+name: Check Websites Weekly
+
+on:
+  schedule:
+    - cron: '0 11 * * 5'  # Runs at 11:00 UTC every Friday (12:00 CET, 13:00 CEST)
+  workflow_dispatch:
+
+jobs:
+  check_websites:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check websites
+      run: |
+        EXIT=0
+        
+        # check for new Frieren episodes
+        if curl -s "https://en.wikipedia.org/wiki/List_of_Frieren_episodes" | grep -q '<td class="infobox-data">28</td>'; then
+          echo "There are new Frieren episodes."
+          EXIT=1
+        fi
+
+        # Check for new project from Michael Fogleman's website
+        FOGLEMAN_HASH=$(curl -s "https://www.michaelfogleman.com/projects/" | md5sum | awk '{print $1}')
+        if [ "$FOGLEMAN_HASH" != "75435341987cd7711bc26b73857b1333" ]; then
+          echo "Michael Fogleman's website has changed! New hash: $FOGLEMAN_HASH"
+          EXIT=1
+        fi
+
+        if [ "test" != "asd" ]; then
+          echo "this is a test"
+          EXIT=1
+        fi
+
+        exit $EXIT
