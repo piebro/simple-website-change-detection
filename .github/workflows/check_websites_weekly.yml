@@ -14,7 +14,7 @@ jobs:
         EXIT=0
         
         # check for new Frieren episodes
-        if ! curl -s "https://en.wikipedia.org/wiki/Frieren" | grep -q '<td class="infobox-data">28</td>'; then
+        if ! curl -s "https://en.wikipedia.org/wiki/Frieren" | grep -q '<td class="infobox-data">28'; then
           echo "There are new Frieren episodes."
           EXIT=1
         fi
