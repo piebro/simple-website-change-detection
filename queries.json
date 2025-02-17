@@ -3,7 +3,7 @@
         "Name": "New Frieren episodes",
         "URL": "https://en.wikipedia.org/wiki/List_of_Frieren_episodes",
         "SearchHTML": "<th scope=\"row\" rowspan=\"1\" id=",
-        "ExpectedCount": 27
+        "ExpectedCount": 28
     },
     {
         "Name": "New project from Michael Fogleman",
