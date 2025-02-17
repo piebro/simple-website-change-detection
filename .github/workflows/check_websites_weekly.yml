@@ -8,28 +8,32 @@ on:
 jobs:
   check_websites:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-    - name: Check websites
-      run: |
-        EXIT=0
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
         
-        # check for new Frieren episodes
-        if ! curl -s "https://en.wikipedia.org/wiki/Frieren" | grep -q '<td class="infobox-data">28'; then
-          echo "There are new Frieren episodes."
-          EXIT=1
+    - name: Install dependencies
+      run: pip install requests
+      
+    - name: Check websites
+      run: python check_websites.py
+      
+    - name: Commit and Push Changes
+      run: |
+        git config --local user.email "noreply@github.com"
+        git config --local user.name "GitHub Actions Bot"
+        git add .
+        # Check if there are any changes to commit
+        if [ -n "$(git status --porcelain)" ]; then
+          git commit -m "Update website check results"
+          git push
+        else
+          echo "No changes to commit"
         fi
-
-        # Check for new project from Michael Fogleman's website
-        FOGLEMAN_HASH=$(curl -s "https://www.michaelfogleman.com/projects/" | md5sum | awk '{print $1}')
-        if [ "$FOGLEMAN_HASH" != "75435341987cd7711bc26b73857b1333" ]; then
-          echo "Michael Fogleman's website has changed! New hash: $FOGLEMAN_HASH"
-          EXIT=1
-        fi
-
-        # Check for Alegro Pastel film info
-        if ! curl -s "https://de.wikipedia.org/wiki/Leif_Randt" | grep -q "Im Sommer 2024 wird der Roman verfilmt."; then
-          echo "New information about Alegro Pastel film found!"
-          EXIT=1
-        fi
-
-        exit $EXIT

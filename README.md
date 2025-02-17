@@ -9,8 +9,7 @@ The GitHub Action script is located at [.github/workflows/check_websites_weekly.
 To use this for your own purposes:
 
 1. Fork this repository or copy the code.
-2. Add your own websites and change conditions to the script.
-3. Configure GitHub notifications for failed actions if desired.
+2. Add your own websites and change conditions to `queries.py`.
 
 ## License
 
