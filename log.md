@@ -1,4 +1,6 @@
 
+## 2025-09-05
+
 ## 2025-08-29
 - New Frieren episodes: HTML content changed! Expected `28` occurrence(s) of `<th scope="row" rowspan="1" id=`, found `0`
 - Updates about the Alegro Pastel film: Content changed! Expected `5` occurrence(s) of `Film`, found `0`
